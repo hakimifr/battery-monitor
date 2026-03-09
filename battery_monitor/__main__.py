@@ -61,18 +61,18 @@ async def get_stats() -> tuple[dict, VoltageUnit, UsbVoltageUnit]:
 
     voltage = stats.get("voltage", 0)
     try:
-        v = int(voltage)
+        v = abs(int(voltage))
         voltage_unit = Unit.microvolt if v > 9999 else Unit.millivolt
-        wattage = (v / 1_000_000 if v > 9999 else v / 1000) * int(stats.get("current_mA", 0))
+        wattage = (v / 1_000_000 if v > 9999 else v / 1000) * (int(stats.get("current_mA", 0)) / 1000)
     except Exception:  # noqa: BLE001
         voltage_unit = Unit.microvolt
         wattage = "[could not calculate wattage]"
 
     usb_voltage = stats.get("usb_voltage", 0)
     try:
-        usbv = int(usb_voltage)
+        usbv = abs(int(usb_voltage))
         usb_voltage_unit = Unit.microvolt if usbv > 9999 else Unit.millivolt
-        usb_wattage = (usbv / 1_000_000 if usbv > 9999 else usbv / 1000) * int(stats.get("current_mA", 0))
+        usb_wattage = (usbv / 1_000_000 if usbv > 9999 else usbv / 1000) * (int(stats.get("current_mA", 0)) / 1000)
     except Exception:  # noqa: BLE001
         usb_voltage_unit = Unit.microvolt
         usb_wattage = "[could not calculate USB wattage]"
