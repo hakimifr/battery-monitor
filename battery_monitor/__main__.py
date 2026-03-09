@@ -104,7 +104,8 @@ def make_table(stats: dict, voltage_unit: VoltageUnit, usb_voltage_unit: UsbVolt
     pct = fcc / design * 100
     general.add_row("Battery Health", f"{fcc}/{design} ({pct:.2f}%)")
 
-    general.add_row("temp", stats["temp"])
+    with contextlib.suppress(TypeError):
+        general.add_row("temp", stats["temp"] / 10)
     general.add_row("cool_down", stats["cool_down"])
 
     charging = Table(title="Charging Info", box=box.SIMPLE, show_header=False)
