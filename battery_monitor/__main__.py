@@ -80,8 +80,8 @@ async def get_stats() -> tuple[dict, VoltageUnit, UsbVoltageUnit]:
     stats.update({
         "voltage": voltage,
         "usb_voltage": usb_voltage,
-        "wattage": wattage,
-        "usb_wattage": usb_wattage,
+        "wattage": f"{wattage:.4f}",
+        "usb_wattage": f"{usb_wattage:.4f}",
     })
 
     return stats, voltage_unit, usb_voltage_unit
