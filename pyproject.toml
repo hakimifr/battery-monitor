@@ -1,0 +1,19 @@
+[project]
+name = "battery-monitor"
+version = "0.1.1"
+description = "Made mainly for RM6785, but will work for almost anything"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "anyio>=4.12.1",
+    "rich>=14.3.3",
+    "tomlkit>=0.14.0",
+]
+
+[project.scripts]
+battery = "battery_monitor.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
