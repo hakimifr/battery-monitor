@@ -25,7 +25,7 @@ import tomlkit.container
 
 @dataclass
 class NodePaths:
-    current: str = "/sys/class/power_supply/battery/current"
+    current: str = "/sys/class/power_supply/battery/current_now"
     voltage: str = "/sys/class/power_supply/battery/voltage_now"
     voltage_usb: str = "/sys/class/power_supply/usb/device/ADC_Charger_Voltage"
     capacity: str = "/sys/class/power_supply/battery/capacity"

@@ -107,12 +107,12 @@ def make_table(stats: dict, voltage_unit: VoltageUnit, usb_voltage_unit: UsbVolt
     general.add_row("temp", stats["temp"])
     general.add_row("cool_down", stats["cool_down"])
 
-    charging = Table(title="Health Info", box=box.SIMPLE, show_header=False)
+    charging = Table(title="Charging Info", box=box.SIMPLE, show_header=False)
     charging.add_column(style="cyan")
     charging.add_column(style="green")
 
-    with contextlib.suppress(TypeError):
-        charging.add_row("current", f"{stats['current_mA']} ({abs(stats['current_mA'])}mA)")
+    with contextlib.suppress(ValueError):
+        charging.add_row("current", f"{stats['current_mA']} ({abs(int(stats['current_mA']))}mA)")
     charging.add_row("voltage", f"{stats['voltage']}{voltage_unit.value}")
     charging.add_row("USB voltage", f"{stats['usb_voltage']}{usb_voltage_unit.value}")
     charging.add_row("wattage", f"{stats['wattage']}W")
